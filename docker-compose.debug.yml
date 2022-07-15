@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  summercumpproject2022:
+    image: summercumpproject2022
+    build:
+      context: .
+      dockerfile: ./Dockerfile
