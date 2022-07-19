@@ -3,6 +3,7 @@ import 'package:summer_cump_project_2022/widgets/add_post.dart';
 import 'package:summer_cump_project_2022/widgets/custom_header.dart';
 import 'package:summer_cump_project_2022/widgets/home_tabs.dart';
 import 'package:summer_cump_project_2022/widgets/post_widget.dart';
+import 'package:summer_cump_project_2022/widgets/stories.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -25,6 +26,7 @@ class _HomepageState extends State<Homepage> {
           //Add post
           const AddPost(),
           //Stories view
+          const Stories(),
           //Posts list
           ListView.builder(
               itemCount: 17,
@@ -32,7 +34,11 @@ class _HomepageState extends State<Homepage> {
               scrollDirection: Axis.vertical,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                return const PostWidget();
+                return PostWidget(
+                  bookmarkPost: () {
+                    //....
+                  },
+                );
               })
         ]),
       )),

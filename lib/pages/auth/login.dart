@@ -39,17 +39,33 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 24),
                 TextField(
                   controller: _emailCtrl,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(CupertinoIcons.mail_solid),
-                  ),
+                  decoration: InputDecoration(
+                      hintText: 'client@gmail.com',
+                      hintStyle: TextStyle(color: Colors.grey.shade600),
+                      prefixIcon: const Icon(CupertinoIcons.mail_solid,
+                          color: Colors.blue, size: 18),
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey.shade200),
                 ),
                 const SizedBox(height: 24),
                 TextField(
                   obscureText: true,
                   controller: _passCtrl,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(CupertinoIcons.lock_fill),
-                  ),
+                  decoration: InputDecoration(
+                      hintText: '********',
+                      hintStyle: TextStyle(color: Colors.grey.shade600),
+                      prefixIcon: const Icon(CupertinoIcons.lock_fill,
+                          color: Colors.blue, size: 18),
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                      ),
+                      filled: true,
+                      fillColor: Colors.grey.shade200),
                 ),
                 const SizedBox(height: 24),
                 Row(

@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PostWidget extends StatelessWidget {
-  const PostWidget({Key? key}) : super(key: key);
+  final Function bookmarkPost;
+  const PostWidget({Key? key, required this.bookmarkPost}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +11,13 @@ class PostWidget extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(12),
       child: Column(
-        children: const [
-          UserMetaData(),
-          SizedBox(height: 14),
-          PostBody(),
+        children: [
+          const UserMetaData(),
+          const SizedBox(height: 14),
+          const PostBody(),
+          PostActions(
+            bookmarkPost: bookmarkPost,
+          ),
         ],
       ),
     );
@@ -83,6 +87,43 @@ class PostBody extends StatelessWidget {
           height: 250,
         )
       ],
+    );
+  }
+}
+
+class PostActions extends StatefulWidget {
+  final Function bookmarkPost;
+  const PostActions({Key? key, required this.bookmarkPost}) : super(key: key);
+
+  @override
+  State<PostActions> createState() => _PostActionsState();
+}
+
+class _PostActionsState extends State<PostActions> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(top: 12),
+      child: Row(
+        children: [
+          InkResponse(onTap: () {}, child: const Icon(CupertinoIcons.heart)),
+          const SizedBox(
+            width: 6,
+          ),
+          InkResponse(
+              onTap: () {}, child: const Icon(CupertinoIcons.chat_bubble)),
+          const SizedBox(
+            width: 6,
+          ),
+          InkResponse(onTap: () {}, child: const Icon(CupertinoIcons.share_up)),
+          const Spacer(),
+          InkResponse(
+              onTap: () {
+                widget.bookmarkPost;
+              },
+              child: const Icon(CupertinoIcons.bookmark)),
+        ],
+      ),
     );
   }
 }
