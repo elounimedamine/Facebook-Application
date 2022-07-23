@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "325556498898",
+    "project_id": "fbclone-33d04",
+    "storage_bucket": "fbclone-33d04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325556498898:android:d7da73960b24c1d1b3d80b",
+        "android_client_info": {
+          "package_name": "tn.kantra.fbc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325556498898-3d7bddb6sep53gnosnolh8ohtldu5832.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUn1WNHSBKDwVzYzW7QLFGqrqT0QUr7-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "325556498898-3d7bddb6sep53gnosnolh8ohtldu5832.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
