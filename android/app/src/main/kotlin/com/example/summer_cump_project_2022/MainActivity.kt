@@ -1,4 +1,4 @@
-package com.example.summer_cump_project_2022
+package tn.kantra.fbc
 
 import io.flutter.embedding.android.FlutterActivity
 

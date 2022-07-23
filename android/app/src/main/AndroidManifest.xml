@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.summer_cump_project_2022">
+    package="tn.kantra.fbc">
    <application
         android:label="summer_cump_project_2022"
         android:name="${applicationName}"
