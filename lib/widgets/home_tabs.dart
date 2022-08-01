@@ -56,19 +56,6 @@ class _HomeTabsState extends State<HomeTabs> {
             physics: const NeverScrollableScrollPhysics(),
           ),
           const Spacer(),
-          InkResponse(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProfileScreen()));
-              },
-              radius: 20,
-              child: const Icon(
-                CupertinoIcons.line_horizontal_3,
-                size: 24,
-                color: Colors.black87,
-              )),
         ],
         // children: [
         //   ListView.separated(

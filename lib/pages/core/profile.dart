@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:summer_cump_project_2022/pages/auth/login.dart';
+import 'package:summer_cump_project_2022/services/auth_services.dart';
 import 'package:summer_cump_project_2022/widgets/rounded_border_button.dart';
+
+AuthServices _authServices = AuthServices();
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -27,6 +31,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
               const Text(
                 'Home Page',
                 style: TextStyle(color: Colors.black87, fontSize: 13),
+              ),
+              const Spacer(),
+              TextButton(
+                  onPressed: () async {
+                    await _authServices.logout().then((value) =>
+                        Navigator.pushReplacement(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => const LoginPage())));
+                  },
+                  child: const Text('Logout')),
+              const SizedBox(
+                width: 26,
               )
             ],
           ),
@@ -72,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
               )
             ],
-          )
+          ),
         ]),
       )),
     );
