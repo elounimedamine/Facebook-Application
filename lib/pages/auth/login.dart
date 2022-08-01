@@ -85,7 +85,6 @@ class _LoginPageState extends State<LoginPage> {
                                 const snakabar = SnackBar(
                                     content: Text(
                                         "Email/Password cannot be empty!"));
-                                // ignore: use_build_context_synchronously
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snakabar);
                               } else {
