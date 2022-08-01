@@ -54,6 +54,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   controller: _fullnameCtrl,
                   decoration: InputDecoration(
                       hintText: 'username',
+                      suffixIcon: IconButton(
+                        onPressed: () => _fullnameCtrl.clear(),
+                        icon: const Icon(Icons.clear),
+                      ),
                       hintStyle: TextStyle(color: Colors.grey.shade600),
                       prefixIcon: const Icon(CupertinoIcons.person,
                           color: Colors.blue, size: 18),
@@ -69,6 +73,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   controller: _emailCtrl,
                   decoration: InputDecoration(
                       hintText: 'client@gmail.com',
+                      suffixIcon: IconButton(
+                        onPressed: () => _emailCtrl.clear(),
+                        icon: const Icon(Icons.clear),
+                      ),
                       hintStyle: TextStyle(color: Colors.grey.shade600),
                       prefixIcon: const Icon(CupertinoIcons.mail_solid,
                           color: Colors.blue, size: 18),
@@ -85,6 +93,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       hintText: 'phone number',
+                      suffixIcon: IconButton(
+                        onPressed: () => _phoneCtrl.clear(),
+                        icon: const Icon(Icons.clear),
+                      ),
                       hintStyle: TextStyle(color: Colors.grey.shade600),
                       prefixIcon: const Icon(CupertinoIcons.phone,
                           color: Colors.blue, size: 18),
@@ -101,6 +113,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   controller: _passCtrl,
                   decoration: InputDecoration(
                       hintText: '********',
+                      suffixIcon: IconButton(
+                        onPressed: () => _passCtrl.clear(),
+                        icon: const Icon(Icons.clear),
+                      ),
                       hintStyle: TextStyle(color: Colors.grey.shade600),
                       prefixIcon: const Icon(CupertinoIcons.lock_fill,
                           color: Colors.blue, size: 18),
@@ -124,6 +140,10 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                   decoration: InputDecoration(
                       hintText: 'confirm password',
+                      suffixIcon: IconButton(
+                        onPressed: () => _confirmPassCtrl.clear(),
+                        icon: const Icon(Icons.clear),
+                      ),
                       hintStyle: TextStyle(color: Colors.grey.shade600),
                       prefixIcon: const Icon(CupertinoIcons.lock_fill,
                           color: Colors.blue, size: 18),
@@ -187,7 +207,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               if (_fullnameCtrl.text.trim().isNotEmpty &&
                                   _emailCtrl.text.trim().isNotEmpty &&
                                   _phoneCtrl.text.trim().isNotEmpty &&
-                                  _passCtrl.text.trim().isNotEmpty && _passCtrl.text == _confirmPassCtrl.text) {
+                                  _passCtrl.text.trim().isNotEmpty &&
+                                  _passCtrl.text == _confirmPassCtrl.text) {
                                 dynamic creds =
                                     await _authServices.registerUser(
                                         newUser, _passCtrl.text.trim());

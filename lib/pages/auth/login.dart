@@ -46,6 +46,10 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _emailCtrl,
                   decoration: InputDecoration(
                       hintText: 'client@gmail.com',
+                      suffixIcon: IconButton(
+                        onPressed: () => _emailCtrl.clear(),
+                        icon: const Icon(Icons.clear),
+                      ),
                       hintStyle: TextStyle(color: Colors.grey.shade600),
                       prefixIcon: const Icon(CupertinoIcons.mail_solid,
                           color: Colors.blue, size: 18),
@@ -62,6 +66,10 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _passCtrl,
                   decoration: InputDecoration(
                       hintText: '********',
+                      suffixIcon: IconButton(
+                        onPressed: () => _passCtrl.clear(),
+                        icon: const Icon(Icons.clear),
+                      ),
                       hintStyle: TextStyle(color: Colors.grey.shade600),
                       prefixIcon: const Icon(CupertinoIcons.lock_fill,
                           color: Colors.blue, size: 18),
