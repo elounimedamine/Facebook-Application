@@ -18,10 +18,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Facebook App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const LoginPage(),
-    );
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const LoginPage());
   }
 }
+

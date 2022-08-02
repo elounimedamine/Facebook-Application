@@ -10,7 +10,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 16, right: 16, top: 22, bottom: 22),
+      margin: const EdgeInsets.only(left: 16, right: 16, top: 18, bottom: 28.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -26,39 +26,44 @@ class Header extends StatelessWidget {
             child: IconButton(
                 onPressed: () {},
                 icon: const Icon(
-                  CupertinoIcons.search,
+                  CupertinoIcons.bell_solid,
                   color: Colors.black87,
+                  size: 18,
                 )),
           ),
-          const SizedBox(width: 6),
+          const SizedBox(
+            width: 12,
+          ),
           CircleAvatar(
             radius: 20,
             backgroundColor: Colors.grey.shade200,
             child: IconButton(
                 onPressed: () {},
                 icon: const Icon(
-                  CupertinoIcons.chat_bubble,
+                  CupertinoIcons.chat_bubble_fill,
                   color: Colors.black87,
+                  size: 18,
                 )),
           ),
-          const SizedBox(width: 6),
+          const SizedBox(
+            width: 12,
+          ),
           CircleAvatar(
             radius: 20,
-            backgroundColor: Colors.grey.shade200,
-            child: InkResponse(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ProfileScreen()));
-              },
-              radius: 20,
-              child: const Icon(
-                CupertinoIcons.person,
-                size: 24,
-                color: Colors.black87,
-              )),
-          ),
+            backgroundColor: Colors.blue.shade50,
+            child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfileScreen()));
+                },
+                icon: const Icon(
+                  CupertinoIcons.person_solid,
+                  color: Colors.blue,
+                  size: 18,
+                )),
+          )
         ],
       ),
     );

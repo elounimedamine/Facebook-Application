@@ -9,7 +9,7 @@ class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  _HomepageState createState() => _HomepageState();
 }
 
 class _HomepageState extends State<Homepage> {
@@ -18,29 +18,28 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
-        child: Column(children: [
-          //Header
-          const Header(),
-          //CustomTabs
-          const HomeTabs(),
-          //Add post
-          const AddPost(),
-          //Stories view
-          const Stories(),
-          //Posts list
-          ListView.builder(
-              itemCount: 17,
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) {
-                return PostWidget(
-                  bookmarkPost: () {
-                    //....
-                  },
-                );
-              })
-        ]),
+        child: Column(
+          children: [
+            const Header(),
+            const HomeTabs(),
+            const AddPost(),
+            const Stories(),
+            ListView.separated(
+                itemCount: 17,
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                separatorBuilder: (context, index) => Container(
+                      height: 10,
+                      color: Colors.grey.shade300,
+                    ),
+                itemBuilder: (context, index) {
+                  return PostWidget(
+                    bookmarkPost: () {},
+                  );
+                })
+          ],
+        ),
       )),
     );
   }

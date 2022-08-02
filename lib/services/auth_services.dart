@@ -8,7 +8,7 @@ class AuthServices {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
-  EndUser _userfirebaseUser(User? firebaseUser) {
+  EndUser _userFirebaseUser(User? firebaseUser) {
     return EndUser(uid: firebaseUser!.uid);
   }
 
@@ -19,7 +19,7 @@ class AuthServices {
               email: newUser.email!, password: password);
       User firebaseUser = endUserCredentials.user!;
       addUserToCollection(newUser, firebaseUser.uid);
-      return _userfirebaseUser(firebaseUser);
+      return _userFirebaseUser(firebaseUser);
     } catch (err, stacktrace) {
       log('user signup failed :: $err');
       log('user signup failed :: $stacktrace');
@@ -27,17 +27,27 @@ class AuthServices {
     }
   }
 
-  //
   Future loginUser(String email, String password) async {
-    UserCredential result = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
-    User? user = result.user;
-    return user!.uid;
+    try {
+      UserCredential endUserCredentials = await _firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
+      User firebaseUser = endUserCredentials.user!;
+      return _userFirebaseUser(firebaseUser);
+    } catch (err, stacktrace) {
+      log('user login failed :: $err');
+      log('user login failed :: $stacktrace');
+      return null;
+    }
   }
 
-//
   Future logout() async {
-    await FirebaseAuth.instance.signOut();
+    try {
+      await _firebaseAuth.signOut();
+    } catch (err, stacktrace) {
+      log('user login failed :: $err');
+      log('user login failed :: $stacktrace');
+      return null;
+    }
   }
 
   Future addUserToCollection(EndUser newUser, String? uid) async {
