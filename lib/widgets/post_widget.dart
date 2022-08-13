@@ -1,10 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:summer_cump_project_2022/models/post.dart';
+import 'package:summer_cump_project_2022/services/auth_services.dart';
+
+AuthServices _authServices = AuthServices();
 
 class PostWidget extends StatelessWidget {
   final Function bookmarkPost;
+  final Post post;
 
-  const PostWidget({Key? key, required this.bookmarkPost}) : super(key: key);
+  const PostWidget({
+    Key? key,
+    required this.bookmarkPost,
+    required this.post,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -12,11 +22,27 @@ class PostWidget extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       child: Column(
         children: [
-          const UserMetaData(),
+          FutureBuilder<DocumentSnapshot>(
+              future: _authServices.getUserData(post.author),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return UserMetaData(
+                    avatar: snapshot.data!["avatar_url"],
+                    username: snapshot.data!["fullname"],
+                    addedAt: post.addedAt,
+                    privacy: post.privacy,
+                  );
+                } else {
+                  return const Text('Loading....');
+                }
+              }),
           const SizedBox(
             height: 14,
           ),
-          const PostBody(),
+          PostBody(
+            text: post.text!,
+            mediaURL: post.media!,
+          ),
           PostActions(
             bookmarkPost: bookmarkPost,
           )
@@ -27,16 +53,26 @@ class PostWidget extends StatelessWidget {
 }
 
 class UserMetaData extends StatelessWidget {
-  const UserMetaData({Key? key}) : super(key: key);
+  final String avatar;
+  final String username;
+  final String addedAt;
+  final String privacy;
+
+  const UserMetaData(
+      {Key? key,
+      required this.avatar,
+      required this.username,
+      required this.privacy,
+      required this.addedAt})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const CircleAvatar(
+        CircleAvatar(
           radius: 18,
-          foregroundImage:
-              NetworkImage("https://randomuser.me/api/portraits/men/79.jpg"),
+          foregroundImage: NetworkImage(avatar),
         ),
         const SizedBox(
           width: 12,
@@ -44,9 +80,10 @@ class UserMetaData extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'full name',
-              style: TextStyle(
+            Text(
+              // ignore: unnecessary_brace_in_string_interps, unnecessary_string_interpolations
+              '${username}',
+              style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
                   color: Colors.black87),
@@ -55,18 +92,19 @@ class UserMetaData extends StatelessWidget {
               height: 4,
             ),
             Row(
-              children: const [
+              children: [
                 Text(
-                  'just now • ',
-                  style: TextStyle(
+                  // ignore: unnecessary_brace_in_string_interps
+                  '${addedAt} • ',
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                       color: Colors.grey),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 3,
                 ),
-                Icon(
+                const Icon(
                   CupertinoIcons.globe,
                   size: 16,
                 )
@@ -82,23 +120,37 @@ class UserMetaData extends StatelessWidget {
 }
 
 class PostBody extends StatelessWidget {
-  const PostBody({Key? key}) : super(key: key);
+  final String text;
+  final String mediaURL;
+
+  const PostBody({Key? key, required this.text, required this.mediaURL})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Flexible(
-            child: Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi volutpat nisl non orci ultrices bibendum. Morbi ac cursus ipsum, quis facilisis velit. Phasellus risus lacus, dapibus sit amet ornare eu, ")),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Flexible(
+                child: Text(
+              text,
+            )),
+          ],
+        ),
         const SizedBox(
           height: 14,
         ),
-        Container(
-          color: Colors.grey.shade200,
-          height: 250,
-        )
+        // ignore: unnecessary_null_comparison
+        mediaURL.isEmpty || mediaURL == null
+            ? Container(
+                color: Colors.grey.shade200,
+                height: 250,
+              )
+            : const SizedBox.shrink(),
       ],
     );
   }

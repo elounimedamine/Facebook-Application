@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:summer_cump_project_2022/pages/core/add_post.dart';
 import 'package:summer_cump_project_2022/utils/temp_data.dart';
 
 class AddPost extends StatelessWidget {
@@ -21,7 +22,9 @@ class AddPost extends StatelessWidget {
           Expanded(
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(64)),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, CupertinoPageRoute(builder: (context) => const AddPostPage()));
+              },
               child: Container(
                 padding: const EdgeInsets.only(top: 15, bottom: 13, left: 16),
                 decoration: BoxDecoration(

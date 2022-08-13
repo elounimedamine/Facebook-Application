@@ -53,4 +53,8 @@ class AuthServices {
   Future addUserToCollection(EndUser newUser, String? uid) async {
     await _firebaseFirestore.collection('users').doc(uid).set(newUser.toJson());
   }
+
+  Future<DocumentSnapshot> getUserData(String userID) async {
+    return _firebaseFirestore.collection('users').doc(userID).get();
+  }
 }
